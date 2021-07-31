@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
 const bp = require('body-parser')
 const translate = require("deepl");
 
@@ -15,11 +15,16 @@ app.get('/', (req, res) => {
 })
 
 app.get('/deepl', (req, res) => {
-    res.send('Hello DeepL API!')
+    console.log("get deepl");
+    // res.send('Hello DeepL API!')
+    res.json({ message: "Hello DeepL API!" });
 })
 
 app.post('/deepl', (req, res, next) => {
     (async () => {
+        console.log("post deepl");
+        console.log(req.body);
+
         const originalText = req.body.text;
 
         const translatedText = await translate({
@@ -36,7 +41,8 @@ app.post('/deepl', (req, res, next) => {
         });
         console.log(originalText);
         console.log(translatedText);
-        res.send(translatedText);
+        // res.send(translatedText);
+        res.json({ message: translatedText });
     })().catch(next);
 })
 
