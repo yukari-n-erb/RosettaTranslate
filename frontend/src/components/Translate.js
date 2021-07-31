@@ -1,0 +1,40 @@
+import React, { useState } from "react";
+
+export const Translate = () => {
+  const [originText, setOriginText] = useState("Hello World");
+  const [translatedText, setTranslatedText] = useState("");
+
+
+  const onInputChange = (e) => {
+    setOriginText(e.currentTarget.value);
+  }
+
+  const submit = () => {
+    setTranslatedText("loading...");
+    console.log("submit");
+    const data = {
+        text: originText
+    }
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    };
+    fetch('/deepl', requestOptions)
+    .then((res) => res.json())
+    .then((data) => setTranslatedText(data.message));
+}
+
+  return (
+    <div className="Rosseta">
+      <h1 className="Rosseta__title">RossetaTranslate</h1>
+      <textarea className="originalText__input" type="text" value={originText} placeholder="Enter Text" onChange={onInputChange} />
+      <button type="submit" className="translate__submit" onClick={submit} >Translate</button>
+      <textarea className="translatedText__input" type="text" value={translatedText}/>
+    </div>
+  );
+};
+
+export default Translate;
