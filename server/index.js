@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const path = require('path');
 const port = process.env.PORT || 3001
 const bp = require('body-parser')
 const translate = require("deepl");
@@ -10,7 +11,9 @@ require('dotenv').config();
 app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
 
-app.get('/', (req, res) => {
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+app.get('/api', (req, res) => {
     res.send('Hello World!')
 })
 
@@ -45,6 +48,11 @@ app.post('/deepl', (req, res, next) => {
         res.json({ message: translatedText });
     })().catch(next);
 })
+
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname,'../frontend/build/index.html'));
+});
 
 app.listen(port, () => {
   console.log(`listening on *:${port}`);
