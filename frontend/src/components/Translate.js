@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export const Translate = () => {
-  const [originText, setOriginText] = useState("Hello World");
+  const [originText, setOriginText] = useState("");
   const [translatedText, setTranslatedText] = useState("");
 
 
