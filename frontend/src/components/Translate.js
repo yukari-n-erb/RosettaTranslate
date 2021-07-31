@@ -29,7 +29,7 @@ export const Translate = () => {
 
   return (
     <div className="Rosseta">
-      <h1 className="Rosseta__title">RossetaTranslate</h1>
+      <h1 className="Rosseta__title">Rosseta Translator</h1>
       <div>
         <button type="submit" className="translate__submit" onClick={submit} >Translate</button>
       </div>
