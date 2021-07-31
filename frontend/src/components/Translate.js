@@ -30,9 +30,13 @@ export const Translate = () => {
   return (
     <div className="Rosseta">
       <h1 className="Rosseta__title">RossetaTranslate</h1>
-      <textarea className="originalText__input" type="text" value={originText} placeholder="Enter Text" onChange={onInputChange} />
-      <button type="submit" className="translate__submit" onClick={submit} >Translate</button>
-      <textarea className="translatedText__input" type="text" value={translatedText}/>
+      <div>
+        <button type="submit" className="translate__submit" onClick={submit} >Translate</button>
+      </div>
+      <div>
+        <textarea className="originalText__input" type="text" value={originText} placeholder="Enter Text" onChange={onInputChange} />
+        <textarea className="translatedText__input" type="text" value={translatedText}/>
+      </div>
     </div>
   );
 };
