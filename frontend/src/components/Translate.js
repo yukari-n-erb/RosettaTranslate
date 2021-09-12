@@ -3,6 +3,7 @@ import React, { useState } from "react";
 export const Translate = () => {
   const [originText, setOriginText] = useState("");
   const [translatedText, setTranslatedText] = useState("");
+  const [googleTranslatedText, setGoogleTranslatedText] = useState("");
 
 
   const onInputChange = (e) => {
@@ -11,6 +12,7 @@ export const Translate = () => {
 
   const submit = () => {
     setTranslatedText("loading...");
+    setGoogleTranslatedText("loading...");
     console.log("submit");
     const data = {
         text: originText
@@ -24,7 +26,16 @@ export const Translate = () => {
     };
     fetch('/deepl', requestOptions)
     .then((res) => res.json())
-    .then((data) => setTranslatedText(data.message));
+    .then((data) => {
+      console.log({data})
+      setTranslatedText(data.message)
+    });
+    fetch('/google', requestOptions)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log({data})
+      setGoogleTranslatedText(data.message)
+    });
 }
 
   return (
@@ -35,7 +46,8 @@ export const Translate = () => {
       </div>
       <div>
         <textarea className="originalText__input" type="text" value={originText} placeholder="Enter Text" onChange={onInputChange} />
-        <textarea className="translatedText__input" type="text" value={translatedText}/>
+        <textarea className="translatedText__input" type="text" value={translatedText} placeholder="DeepL Result"/>
+        <textarea className="translatedText__input" type="text" value={googleTranslatedText} placeholder="Google Result"/>
       </div>
     </div>
   );
