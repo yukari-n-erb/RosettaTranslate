@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Button} from "@material-ui/core"
 
 export const Translate = () => {
   const [originText, setOriginText] = useState("");
@@ -42,7 +43,7 @@ export const Translate = () => {
     <div className="Rosseta">
       <h1 className="Rosseta__title">Rosseta Translator</h1>
       <div>
-        <button type="submit" className="translate__submit" onClick={submit} >Translate</button>
+        <Button variant="contained" onClick={submit}>Translate</Button>
       </div>
       <div>
         <textarea className="originalText__input" type="text" value={originText} placeholder="Enter Text" onChange={onInputChange} />
