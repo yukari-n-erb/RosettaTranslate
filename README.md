@@ -1,4 +1,4 @@
-# RossetaTranslate
+# RosettaTranslate
 
 
 ## How to setup
