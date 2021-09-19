@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.Rosseta {
+.Rosetta {
   /* background-image: url(https://beiz.jp/images_L/stone/stone_00011.jpg); */
   height: 100vh;
 }
@@ -17,7 +17,7 @@ code {
     monospace;
 }
 
-.Rosseta__title {
+.Rosetta__title {
   color: whitesmoke;
   background-color: black;
 }

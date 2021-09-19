@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState } from 'react';
-import { Button, TextField } from '@material-ui/core';
+import {
+  Typography, Button, Grid, Box, TextField,
+} from '@material-ui/core';
 
 export const Translate = () => {
   const [originText, setOriginText] = useState('');
@@ -37,16 +39,44 @@ export const Translate = () => {
   };
 
   return (
-    <div className="Rosseta">
-      <h1 className="Rosseta__title">Rosseta Translator</h1>
-      <div>
-        <Button variant="contained" onClick={submit}>Translate</Button>
-      </div>
-      <div>
-        <TextField variant="outlined" value={originText} placeholder="Enter Text" onChange={onInputChange} />
-        <TextField InputProps={{ readOnly: true }} variant="outlined" value={translatedText} placeholder="DeepL API Result" />
-        <TextField InputProps={{ readOnly: true }} variant="outlined" value={googleTranslatedText} placeholder="Google Translation API Result" />
-      </div>
+    <div className="Rosetta">
+      <Typography variant="h2" component="div">
+        Rosetta Translator
+      </Typography>
+      <Box pt={1} pb={2}>
+        <Button variant="contained" size="medium" onClick={submit}>Translate</Button>
+      </Box>
+      <Grid
+        container
+        direction="row"
+        justifyContent="space-around"
+        alignItems="center"
+      >
+        <Box
+          sx={{
+            width: 300,
+            maxWidth: '100%',
+          }}
+        >
+          <TextField fullWidth autoFocus variant="outlined" value={originText} label="Enter Original Text" multiline rows={18} onChange={onInputChange} />
+        </Box>
+        <Box
+          sx={{
+            width: 300,
+            maxWidth: '100%',
+          }}
+        >
+          <TextField fullWidth InputProps={{ readOnly: true }} variant="filled" multiline rows={18} value={translatedText} label="DeepL API Result" />
+        </Box>
+        <Box
+          sx={{
+            width: 300,
+            maxWidth: '100%',
+          }}
+        >
+          <TextField fullWidth InputProps={{ readOnly: true }} variant="filled" multiline rows={18} value={googleTranslatedText} label="Google Translation API Result" />
+        </Box>
+      </Grid>
     </div>
   );
 };
