@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Button} from "@material-ui/core"
+import {Button, TextField} from "@material-ui/core"
 
 export const Translate = () => {
   const [originText, setOriginText] = useState("");
@@ -46,9 +46,9 @@ export const Translate = () => {
         <Button variant="contained" onClick={submit}>Translate</Button>
       </div>
       <div>
-        <textarea className="originalText__input" type="text" value={originText} placeholder="Enter Text" onChange={onInputChange} />
-        <textarea className="translatedText__input" type="text" value={translatedText} placeholder="DeepL Result"/>
-        <textarea className="translatedText__input" type="text" value={googleTranslatedText} placeholder="Google Result"/>
+        <TextField value={originText} placeholder="Enter Text" onChange={onInputChange} />
+        <TextField value={translatedText} placeholder="DeepL Result"/>
+        <TextField value={googleTranslatedText} placeholder="Google Result"/>
       </div>
     </div>
   );
