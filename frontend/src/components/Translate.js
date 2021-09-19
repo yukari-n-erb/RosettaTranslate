@@ -1,43 +1,40 @@
-import React, { useState } from "react";
-import {Button, TextField} from "@material-ui/core"
+/* eslint-disable react/jsx-filename-extension */
+import React, { useState } from 'react';
+import { Button, TextField } from '@material-ui/core';
 
 export const Translate = () => {
-  const [originText, setOriginText] = useState("");
-  const [translatedText, setTranslatedText] = useState("");
-  const [googleTranslatedText, setGoogleTranslatedText] = useState("");
-
+  const [originText, setOriginText] = useState('');
+  const [translatedText, setTranslatedText] = useState('');
+  const [googleTranslatedText, setGoogleTranslatedText] = useState('');
 
   const onInputChange = (e) => {
     setOriginText(e.currentTarget.value);
-  }
+  };
 
   const submit = () => {
-    setTranslatedText("loading...");
-    setGoogleTranslatedText("loading...");
-    console.log("submit");
+    setTranslatedText('loading...');
+    setGoogleTranslatedText('loading...');
     const data = {
-        text: originText
-    }
+      text: originText,
+    };
     const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
     };
     fetch('/deepl', requestOptions)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log({data})
-      setTranslatedText(data.message)
-    });
+      .then((res) => res.json())
+      .then((deeplData) => {
+        setTranslatedText(deeplData.message);
+      });
     fetch('/google', requestOptions)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log({data})
-      setGoogleTranslatedText(data.message)
-    });
-}
+      .then((res) => res.json())
+      .then((googleData) => {
+        setGoogleTranslatedText(googleData.message);
+      });
+  };
 
   return (
     <div className="Rosseta">
@@ -46,9 +43,9 @@ export const Translate = () => {
         <Button variant="contained" onClick={submit}>Translate</Button>
       </div>
       <div>
-        <TextField value={originText} placeholder="Enter Text" onChange={onInputChange} />
-        <TextField value={translatedText} placeholder="DeepL Result"/>
-        <TextField value={googleTranslatedText} placeholder="Google Result"/>
+        <TextField variant="outlined" value={originText} placeholder="Enter Text" onChange={onInputChange} />
+        <TextField InputProps={{ readOnly: true }} variant="outlined" value={translatedText} placeholder="DeepL API Result" />
+        <TextField InputProps={{ readOnly: true }} variant="outlined" value={googleTranslatedText} placeholder="Google Translation API Result" />
       </div>
     </div>
   );
