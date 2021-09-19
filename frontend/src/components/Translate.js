@@ -39,8 +39,8 @@ export const Translate = () => {
   };
 
   return (
-    <div className="Rosetta">
-      <Typography variant="h2" component="div">
+    <div>
+      <Typography variant="h3" component="div">
         Rosetta Translator
       </Typography>
       <Box pt={1} pb={2}>
