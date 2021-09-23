@@ -54,7 +54,7 @@ export const Translate = () => {
       >
         <Box
           sx={{
-            width: 300,
+            width: 450,
             maxWidth: '100%',
           }}
         >
@@ -62,7 +62,7 @@ export const Translate = () => {
         </Box>
         <Box
           sx={{
-            width: 300,
+            width: 450,
             maxWidth: '100%',
           }}
         >
@@ -70,7 +70,7 @@ export const Translate = () => {
         </Box>
         <Box
           sx={{
-            width: 300,
+            width: 450,
             maxWidth: '100%',
           }}
         >
